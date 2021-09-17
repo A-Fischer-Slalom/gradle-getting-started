@@ -5,7 +5,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @ServletComponentScan
-public class Application {
+public class HerokuApplication {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
