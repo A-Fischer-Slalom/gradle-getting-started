@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class SlackApp {
     @Bean
     public App initSlackApp() {
-        App app = new App().asOAuthApp(true);
+        App app = new App();
         app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
             // Build a Home tab view
             ZonedDateTime now = ZonedDateTime.now();
