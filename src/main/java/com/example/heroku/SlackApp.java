@@ -17,9 +17,6 @@ public class SlackApp {
     @Bean
     public App initSlackApp() {
         App app = new App().asOAuthApp(true);
-        app.command("/hello-oauth-app", (req, ctx) -> {
-            return ctx.ack("What's up?");
-        });
         app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
             // Build a Home tab view
             ZonedDateTime now = ZonedDateTime.now();
@@ -38,6 +35,9 @@ public class SlackApp {
             );
             return ctx.ack();
             });
+        app.command("/hello-oauth-app", (req, ctx) -> {
+            return ctx.ack("What's up?");
+        });
         return app;
     }
 }
