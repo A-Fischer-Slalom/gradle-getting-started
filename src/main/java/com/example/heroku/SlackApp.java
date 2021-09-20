@@ -23,8 +23,7 @@ public class SlackApp {
             View appHomeView = view(view -> view
                 .type("home")
                 .blocks(asBlocks(
-                section(section -> section.text(markdownText(mt -> mt.text(":wave: Hello, App Home! (Last updated: " + now + ")")))),
-                image(img -> img.imageUrl("https://www.example.com/foo.png"))
+                section(section -> section.text(markdownText(mt -> mt.text(":wave: Hello, App Home! (Last updated: " + now + ")"))))
                 ))
             );
             // Update the App Home for the given user
@@ -34,7 +33,7 @@ public class SlackApp {
                 .view(appHomeView)
             );
             return ctx.ack();
-            });
+        });
         app.command("/hello-oauth-app", (req, ctx) -> {
             return ctx.ack("What's up?");
         });
