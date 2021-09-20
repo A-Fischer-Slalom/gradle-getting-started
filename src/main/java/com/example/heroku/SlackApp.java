@@ -12,6 +12,24 @@ public class SlackApp {
         app.command("/hello-oauth-app", (req, ctx) -> {
             return ctx.ack("What's up?");
         });
+        app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
+            // Build a Home tab view
+            ZonedDateTime now = ZonedDateTime.now();
+            View appHomeView = view(view -> view
+                .type("home")
+                .blocks(asBlocks(
+                section(section -> section.text(markdownText(mt -> mt.text(":wave: Hello, App Home! (Last updated: " + now + ")")))),
+                image(img -> img.imageUrl("https://www.example.com/foo.png"))
+                ))
+            );
+            // Update the App Home for the given user
+            ViewsPublishResponse res = ctx.client().viewsPublish(r -> r
+                .userId(payload.getEvent().getUser())
+                .hash(payload.getEvent().getView().getHash()) // To protect against possible race conditions
+                .view(appHomeView)
+            );
+            return ctx.ack();
+            });
         return app;
     }
 }
