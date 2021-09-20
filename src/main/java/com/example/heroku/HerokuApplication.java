@@ -23,6 +23,7 @@ import java.util.Map;
 @ServletComponentScan
 public class HerokuApplication {
     public boolean someLibraryMethod() {
+        System.out.println("someLibraryMethod");
         return true;
     }
     public static void main(String[] args) {
