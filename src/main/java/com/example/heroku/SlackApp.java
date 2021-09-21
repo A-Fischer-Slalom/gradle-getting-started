@@ -23,7 +23,7 @@ public class SlackApp {
             View appHomeView = view(view -> view
                 .type("home")
                 .blocks(asBlocks(
-                section(section -> section.text(markdownText(mt -> mt.text(":wave: Hello, App Home! (Last updated: " + now + ")"))))
+                section(section -> section.text(markdownText(mt -> mt.text(":wave: Hello, Java App Home!"))))
                 ))
             );
             // Update the App Home for the given user
